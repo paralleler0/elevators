@@ -18,6 +18,7 @@ import org.bukkit.plugin.PluginLoadOrder;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.plugin.*;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
+import org.bukkit.NamespacedKey;
 
 import java.io.File;
 import java.util.Objects;
@@ -89,8 +90,8 @@ public class ElevatorPlugin extends JavaPlugin {
             } else {
                 tempLoc = tempLoc.subtract(0, 1, 0);
             }
-            Block block = tempLoc.getBlock();
-            if (!elevatorConfig.getElevatorMaterials().contains(block.getType())) {
+            NamespacedKey block = tempLoc.getBlock().getType().getKey();
+            if (!elevatorConfig.getElevatorMaterials().contains(block)) {
                 continue;
             }
             return tempLoc.add(0, 1, 0);
