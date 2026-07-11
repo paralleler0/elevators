@@ -15,7 +15,7 @@ repositories {
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
-
+}
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.13.1-R0.1-SNAPSHOT'
 
