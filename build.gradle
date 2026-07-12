@@ -40,12 +40,18 @@ compileJava {
     options.release.set(11)
 }
 
-blossom {
-    replaceToken('PROJECT_NAME', project.name)
-    replaceToken('PROJECT_VERSION', project.version)
-    replaceToken('PROJECT_GROUP', projectGroup)
-    replaceToken('PROJECT_DESCRIPTION', projectDescription)
-    replaceToken('PROJECT_WEBSITE', projectWebsite)
+sourceSets {
+    main {
+        blossom {
+            javaSources {
+                property('PROJECT_NAME', project.name)
+                property('PROJECT_VERSION', project.version)
+                property('PROJECT_GROUP', "${projectGroup}")
+                property('PROJECT_DESCRIPTION', "${projectDescription}")
+                property('PROJECT_WEBSITE', "${projectWebsite}")
+            }
+        }
+    }
 }
 
 shadowJar {
