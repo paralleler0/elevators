@@ -8,36 +8,36 @@ group "$projectGroup"
 version "$projectVersion"
 
 repositories {
-    mavenCentral()
-    maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
-    maven { url 'https://hub.spigotmc.org/nexus/service/rest/repository/browse/snapshots/' } 
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    mainCentral()
+    maven { url 'https://spigotmc.org' }
+    maven { url 'https://spigotmc.org' }
+    maven { url 'https://sonatype.org' }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.13.1-R0.1-SNAPSHOT'
     
-    compileOnly "org.projectlombok:lombok:$lombokVersion"
-    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
     
     compileOnly "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion"
     annotationProcessor "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion"
     
-    implementation 'eu.koboo:yml-config:1.0.11' 
-    
+    implementation 'eu.koboo:yml-config:1.0.11'
     implementation 'org.bstats:bstats-bukkit:3.0.2'
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_11
-    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_21
 }
 
 compileJava {
     options.fork = true
     options.incremental = true
     options.encoding = 'UTF-8'
-    options.release.set(11)
+    
+    options.release.set(21)
 }
 
 sourceSets {
