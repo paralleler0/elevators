@@ -1,60 +1,63 @@
-plugins {
-    id 'java'
-    id 'net.kyori.blossom' version '2.1.0'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
-}
+plugins { 
+    id 'java' 
+    id 'net.kyori.blossom' version '2.1.0' 
+    id 'com.github.johnrengelman.shadow' version '7.1.2' 
+} 
 
-group "$projectGroup"
-version "$projectVersion"
+group "$projectGroup" 
+version "$projectVersion" 
 
-repositories {
-    mavenCentral()
-    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-    maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
-    maven { url 'https://central.sonatype.com/repository/maven-snapshots/' }
-}
-
-dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.13.1-R0.1-SNAPSHOT'
+repositories { 
+    mavenCentral() 
     
-    compileOnly 'org.projectlombok:lombok:1.18.32'
-    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    // The exact functional Sonatype Nexus group for Spigot & BungeeCord artifacts
+    maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' } 
+} 
+
+dependencies { 
+    compileOnly 'org.spigotmc:spigot-api:1.13.1-R0.1-SNAPSHOT' 
     
-    compileOnly "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion"
-    annotationProcessor "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion"
+    compileOnly 'org.projectlombok:lombok:1.18.32' 
+    annotationProcessor 'org.projectlombok:lombok:1.18.32' 
     
-    implementation 'eu.koboo:yml-config:1.0.11'
-    implementation 'org.bstats:bstats-bukkit:3.0.2'
-}
-
-java {
-    targetCompatibility = JavaVersion.VERSION_21
-    sourceCompatibility = JavaVersion.VERSION_21
-}
-
-compileJava {
-    options.fork = true
-    options.incremental = true
-    options.encoding = 'UTF-8'
+    compileOnly "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion" 
+    annotationProcessor "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion" 
     
-    options.release.set(21)
-}
+    implementation 'eu.koboo:yaml-config:1.0.11' 
+    implementation 'org.bstats:bstats-bukkit:3.0.2' 
+} 
 
-sourceSets {
-    main {
-        blossom {
-            javaSources {
-                property('PROJECT_NAME', project.name)
-                property('PROJECT_VERSION', project.version)
-                property('PROJECT_GROUP', "${projectGroup}")
-                property('PROJECT_DESCRIPTION', "${projectDescription}")
-                property('PROJECT_WEBSITE', "${projectWebsite}")
-            }
-        }
-    }
-}
+java { 
+    targetCompatibility = JavaVersion.VERSION_21 
+    sourceCompatibility = JavaVersion.VERSION_21 
+} 
 
-shadowJar {
-    relocate 'org.bstats', 'your.plugin.package.libs.bstats'
-    relocate 'eu.koboo.yaml', 'your.plugin.package.libs.yaml'
-}
+compileJava { 
+    options.fork = true 
+    options.incremental = true 
+    options.encoding = 'UTF-8' 
+    options.release.set(21) 
+    options.compilerArgs << '-Xlint:-processing' 
+} 
+
+sourceSets { 
+    main { 
+        blossom { 
+            javaSources { 
+                property('PROJECT_NAME', project.name) 
+                property('PROJECT_VERSION', project.version) 
+                property('PROJECT_GROUP', "${projectGroup}") 
+                property('PROJECT_DESCRIPTION', "${projectDescription}") 
+                property('PROJECT_WEBSITE', "${projectWebsite}") 
+            } 
+        } 
+    } 
+} 
+
+shadowJar { 
+    archiveClassifier.set('') 
+    relocate 'org.bstats', 'your.plugin.package.libs.bstats' 
+    relocate 'eu.koboo.yaml', 'your.plugin.package.libs.yaml' 
+} 
+
+build.dependsOn shadowJar
