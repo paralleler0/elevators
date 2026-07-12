@@ -9,25 +9,21 @@ version "$projectVersion"
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-    }
-    maven {
-        url 'https://oss.sonatype.org/content/repositories/snapshots'
-    }
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
+
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.13.1-R0.1-SNAPSHOT'
-
+    
     compileOnly "org.projectlombok:lombok:$lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
-
+    
     compileOnly "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion"
     annotationProcessor "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion"
-
-    implementation 'eu.koboo:yaml-config:1.0.11'
-
-    //https://github.com/Bastian/bstats-metrics
+    
+    implementation 'eu.koboo:yaml-config:1.3.3' 
+    
     implementation 'org.bstats:bstats-bukkit:3.0.2'
 }
 
@@ -52,6 +48,6 @@ blossom {
 }
 
 shadowJar {
-    relocate 'org.bstats', 'eu.koboo.elevator.libs.bstats'
-    relocate 'eu.koboo.yaml', 'eu.koboo.elevator.libs.yaml'
+    relocate 'org.bstats', 'your.plugin.package.libs.bstats'
+    relocate 'eu.koboo.yaml', 'your.plugin.package.libs.yaml'
 }
