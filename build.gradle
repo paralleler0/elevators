@@ -9,8 +9,9 @@ version "$projectVersion"
 
 repositories {
     mavenCentral()
-    maven { url 'https://spigotmc.org' }
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
+    maven { url 'https://hub.spigotmc.org/nexus/service/rest/repository/browse/snapshots/' } 
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 dependencies {
