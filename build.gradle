@@ -22,7 +22,7 @@ dependencies {
     compileOnly "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion"
     annotationProcessor "org.spigotmc:plugin-annotations:$pluginAnnotationsVersion"
     
-    implementation 'eu.koboo:yaml-config:1.3.3' 
+    implementation 'eu.koboo:yaml-config:1.0.11' 
     
     implementation 'org.bstats:bstats-bukkit:3.0.2'
 }
