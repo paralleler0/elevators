@@ -8,10 +8,9 @@ group "$projectGroup"
 version "$projectVersion"
 
 repositories {
-    mainCentral()
-    maven { url 'https://spigotmc.org' }
-    maven { url 'https://spigotmc.org' }
-    maven { url 'https://sonatype.org' }
+    mavenCentral()
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'https://central.sonatype.com/repository/maven-snapshots/' }
 }
 
 dependencies {
